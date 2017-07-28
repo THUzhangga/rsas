@@ -123,12 +123,15 @@ def solve(J, Q, rSAS_fun, mode='RK4', ST_init = None, dt = 1, n_substeps = 1, P_
     from time import clock
     starttime = clock()
     _verbose('Checking inputs...')
+
+    # check Type of J, Q, ST_int
     if type(J) is not np.ndarray:
         J = np.array(J)
-    if J.ndim!=1:
+    if J.ndim!=1: #np.array.ndim: Number of array dimensions
         raise TypeError('J must be a 1-D array')
     J = J.astype(np.float)
     timeseries_length = len(J)
+
     if type(Q) is not np.ndarray:
         Q = np.array(Q).T
     Q = Q.astype(np.float)

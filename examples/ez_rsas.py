@@ -13,10 +13,12 @@ Water Resour. Res., 51, doi:10.1002/2014WR015707.
 # load necessary libraries
 # =====================================
 from __future__ import division
+# Use precisely division in Python2
 import rsas
 import numpy as np
 import pandas as pd
 import argparse
+# Parser for command-line options, arguments and sub-commands
 
 def solve(inputfile, function_list, outputfile=None, alpha=None, C_old=0., n_substeps=1, save_arrays=False):
     # Initializes the random number generator so we always get the same result
@@ -24,7 +26,7 @@ def solve(inputfile, function_list, outputfile=None, alpha=None, C_old=0., n_sub
     # =====================================
     # Load the input data
     # =====================================
-    data = pd.read_csv(inputfile, index_col=0, parse_dates=[1])
+    data = pd.read_csv(inputfile, index_col=0, parse_dates=[1]) # parse column 1 as a date column
     inputfile.close()
     # length of the dataset
     N = len(data)
@@ -36,7 +38,8 @@ def solve(inputfile, function_list, outputfile=None, alpha=None, C_old=0., n_sub
     # =========================
     rSAS_fun = list()
     Q = list()
-    for i, function_type in enumerate(function_list):
+    for i, function_type in enumerate(function_list): 
+        # i get the serial number, function_type get value
         if i>0:
             istr = '_' + str(i+1)
         else:
